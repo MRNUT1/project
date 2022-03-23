@@ -1,15 +1,19 @@
 'use strict'
-const Game = new Phaser.Game(1600, 500, Phaser.AUTO, 'game-canvas', { preload, create, update })
+const Game = new Phaser.Game(1600, 800, Phaser.AUTO, 'game-canvas', { preload, create, update })
 
-let player
-let player2
+let player,player2
 let keyA , keyW, keyS, keyD 
 function preload() {
 Game.load.spritesheet("player", "playercutted.png", 288/6,95/2,12 )
-Game.load.spritesheet("player2","monster.156x160.4x4.png",156/4,160/4,16)
+//Game.load.spritesheet("player2","",156/4,160/4,16)
 Game.load.tilemap("map","GameMap.json",null,Phaser.Tilemap.TILED_JSON)
 Game.load.image("plain","Maps/plains.png")
-Game.load.image("BaseChip","Maps/Pipoya RPG Tileset16x16/Pipoya RPG Tileset16x16/[Base]BaseChip_pipo.png")
+Game.load.image("Tile","Maps/Tileset.png")
+Game.load.image("decor16x16","Maps/decor_16x16.png")
+Game.load.image("waterdecor","Maps/water_decorations.png")
+Game.load.image("Simple","Maps/MasterSimple.png")
+Game.load.image("Serene","Maps/SERENE_VILLAGE_REVAMPED/Serene_Village_16x16.png")
+Game.load.image("Basechip","Maps/Pipoya RPG Tileset 16x16/[Base]BaseChip_pipo.png")
 }
 
 function create() {
@@ -25,9 +29,24 @@ function create() {
 
    const map = Game.add.tilemap("map")
    map.addTilesetImage("plains","plain")
-   map.addTilesetImage("[Base]BaseChip_pipo","BaseChip")
+   map.addTilesetImage("Tileset","Tile")
+   map.addTilesetImage("decor_16x16","decor16x16")
+   map.addTilesetImage("water_decorations","waterdecor")
+   map.addTilesetImage("MasterSimple","Simple")
+   map.addTilesetImage("Serene_Village_16x16","Serene")
+   map.addTilesetImage("[Base]BaseChip_pipo","Basechip")
 
    map.createLayer("Ground")
+   map.createLayer("Upper Ground")
+   map.createLayer("Farm")
+   map.createLayer("Decors")
+   map.createLayer("House")
+   map.createLayer("Farming Station")
+   map.createLayer("Shops")
+
+   //createPlayer()
+   //map.createLayer("Ground")
+   //cursors = Game.input.keyboard.createCursorKeys()
 
 
  keyA = Game.input.keyboard.addKey(Phaser.Keyboard.A)
